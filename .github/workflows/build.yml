@@ -24,7 +24,7 @@ jobs:
         shell: bash
         working-directory: ${{ env.workdir }}
         run: |
-          sudo pacman -Sy base-devel git pacman manjaro-tools-iso-git xmlto --noconfirm
+          sudo pacman -Sy base-devel git pacman manjaro-tools-iso-git xmlto make --noconfirm
           xmlto cpio make
       - name: Clone repos
         shell: bash
