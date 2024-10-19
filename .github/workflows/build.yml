@@ -38,7 +38,7 @@ jobs:
         working-directory: ${{ env.workdir }}/src
         run: |
           su - builder -c "cp -R /etc/manjaro-tools  ~/.config"
-          su - builder -c "cd /builder/src && buildiso -p starlabs-oem-kde -k linux419 -r /builder/src "
+          su - builder -c "cd /builder/src && buildiso -p starlabs-oem-kde -k linux419 -t /builder/src "
       - name: Upload packages
         uses: actions/upload-artifact@v4
         with:
