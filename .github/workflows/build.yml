@@ -24,7 +24,7 @@ jobs:
         shell: bash
         working-directory: ${{ env.workdir }}
         run: |
-          sudo pacman -Sy base-devel git pacman manjaro-tools-iso-git xmlto make --noconfirm
+          sudo pacman -Sy it base-devel manjaro-chrootbuild manjaro-tools-iso-git manjaro-tools-yaml-git manjaro-tools-base-git xmlto make --noconfirm
       - name: Clone repos
         shell: bash
         working-directory: ${{ env.workdir }}
@@ -37,9 +37,10 @@ jobs:
         shell: bash
         working-directory: ${{ env.workdir }}/src
         run: |
+          su - builder -c "cp -R /etc/manjaro-tools  ~/.config"
           su - builder -c "cd /builder/src && buildiso -p starlabs-oem-kde -k linux419 -r /builder/src "
       - name: Upload packages
         uses: actions/upload-artifact@v4
         with:
           name: artifact
-          path: ${{ env.workdir }}/src/*.pkg.tar.zst
+          path: ${{ env.workdir }}/src/*.iso
