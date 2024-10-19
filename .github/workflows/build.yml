@@ -30,7 +30,9 @@ jobs:
         working-directory: ${{ env.workdir }}
         run: |
           sed -i "s/MAKEFLAGS=\"-j2\"/MAKEFLAGS=\"-j8\"/g" /etc/makepkg.conf
-          su - builder -c "git clone https://github.com/${{ github.repository }}.git -b  ${GITHUB_REF##*/} /builder/src"
+          su - builder -c "git clone https://github.com/${{ github.repository }}.git -b  ${GITHUB_REF##*/} /builder/src "
+          su - builder -c "ls -al /builder/src "
+
       - name: Build iso
         shell: bash
         working-directory: ${{ env.workdir }}/src
