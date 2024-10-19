@@ -30,12 +30,12 @@ jobs:
         working-directory: ${{ env.workdir }}
         run: |
           sed -i "s/MAKEFLAGS=\"-j2\"/MAKEFLAGS=\"-j8\"/g" /etc/makepkg.conf
-          su - builder -c "git clone https://github.com/${{ github.repository }}.git -b  ${GITHUB_REF##*/} src"
+          su - builder -c "git clone https://github.com/${{ github.repository }}.git -b  ${GITHUB_REF##*/} /builder/src"
       - name: Build iso
         shell: bash
         working-directory: ${{ env.workdir }}/src
         run: |
-          su - builder -c "cd /builder/src && buildiso -p kde -k linux419 -r /builder/src "
+          su - builder -c "cd /builder/src && buildiso -p starlabs-oem-kde -k linux419 -r /builder/src "
       - name: Upload packages
         uses: actions/upload-artifact@v4
         with:
