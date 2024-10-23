@@ -13,7 +13,7 @@ jobs:
       image: carterjones/manjaro
       volumes:
         - /dev:/dev
-        - /var:/var
+        - /var/lib/manjaro-tools/buildiso:/var/lib/manjaro-tools/buildiso
       options: --ulimit nofile=1024:10240 --privileged
     timeout-minutes: 720 # timeout 12h
     steps:
