@@ -37,7 +37,7 @@ jobs:
         run: |
           su - builder -c "mkdir -p ~/.config && cp -R /etc/manjaro-tools  ~/.config"
           su - builder -c "ls ~/.config/manjaro-tools && cd /builder/src && buildiso -qv"
-          su - builder -c "cd /builder/src && buildiso -p starlabs-oem-kde -k linux419 -t /builder/src "
+          su - builder -c "cd /builder/src && buildiso -p /builder/src/oem/starlabs-oem-kde/profile.conf -k linux419 -t /builder/src "
       - name: Upload packages
         uses: actions/upload-artifact@v4
         with:
