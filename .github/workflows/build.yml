@@ -35,7 +35,7 @@ jobs:
         shell: bash
         working-directory: ${{ env.workdir }}/src/manjaro
         run: |
-          ls -al manjaro
+          ls -al
           # su - builder -c "mkdir -p ~/.config && cp -R /etc/manjaro-tools  ~/.config"
           # su - builder -c "ls ~/.config/manjaro-tools && cd /builder/src && buildiso -qv"
           su - builder -c "sudo buildiso -p kde -k linux419 -t /builder/src"
