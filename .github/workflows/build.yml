@@ -36,8 +36,8 @@ jobs:
         working-directory: ${{ env.workdir }}/src/manjaro
         run: |
           su - builder -c "mkdir -p ~/.config/manjaro-tools"
-          su - builder -c "echo 'run_dir=/builder/src' > ~/.config/manjaro-tools/iso-profiles.conf"
-          su - builder -c "ls ~/.config/manjaro-tools && cd /builder/src && buildiso -qv"
+          su - builder -c "echo 'run_dir=/builder/src/manjaro' > ~/.config/manjaro-tools/iso-profiles.conf"
+          su - builder -c "ls ~/.config/manjaro-tools && buildiso -qv"
           su - builder -c "sudo buildiso -p kde -k linux419 -t /builder/src"
       - name: Upload packages
         uses: actions/upload-artifact@v4
