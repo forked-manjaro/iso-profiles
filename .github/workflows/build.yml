@@ -33,12 +33,12 @@ jobs:
           su - builder -c "git clone https://github.com/${{ github.repository }}.git -b  ${GITHUB_REF##*/} src"
       - name: Build iso
         shell: bash
-        working-directory: ${{ env.workdir }}/src
+        working-directory: ${{ env.workdir }}/src/manjaro
         run: |
           ls -al manjaro
           # su - builder -c "mkdir -p ~/.config && cp -R /etc/manjaro-tools  ~/.config"
           # su - builder -c "ls ~/.config/manjaro-tools && cd /builder/src && buildiso -qv"
-          su - builder -c "cd manjaro && sudo buildiso -p kde -k linux419 -t /builder/src"
+          su - builder -c "sudo buildiso -p kde -k linux419 -t /builder/src"
       - name: Upload packages
         uses: actions/upload-artifact@v4
         with:
