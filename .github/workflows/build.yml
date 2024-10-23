@@ -30,14 +30,14 @@ jobs:
         working-directory: ${{ env.workdir }}
         run: |
           sed -i "s/MAKEFLAGS=\"-j2\"/MAKEFLAGS=\"-j8\"/g" /etc/makepkg.conf
-          su - builder -c "git clone https://github.com/${{ github.repository }}.git -b  ${GITHUB_REF##*/} /builder/src "
+          su - builder -c "git clone https://github.com/${{ github.repository }}.git -b  ${GITHUB_REF##*/} src"
       - name: Build iso
         shell: bash
         working-directory: ${{ env.workdir }}/src
         run: |
           su - builder -c "mkdir -p ~/.config && cp -R /etc/manjaro-tools  ~/.config"
           su - builder -c "ls ~/.config/manjaro-tools && cd /builder/src && buildiso -qv"
-          su - builder -c "cd manjaro && buildiso -p kde -k linux419 -t /builder/src "
+          su - builder -c "cd manjaro && buildiso -p manjaro-kde -k linux419 -t /builder/src"
       - name: Upload packages
         uses: actions/upload-artifact@v4
         with:
